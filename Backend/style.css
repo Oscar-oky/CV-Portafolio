@@ -1,0 +1,935 @@
+body {
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Imagen de fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../Frontend/Fotos/fondo_software2.avif'); /* Cambia esta ruta por tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.15; /* Transparencia para no interferir con el contenido */
+    z-index: -1;
+}
+
+
+
+/* Scroll suave para navegación */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ajuste para anclajes con barra fija */
+html {
+    scroll-padding-top: 80px;
+}
+
+/* Ajuste adicional para secciones */
+#inicio,
+#educacion,
+#experiencia,
+#proyectos,
+#habilidades,
+#contacto {
+    scroll-margin-top: 80px;
+}
+
+/* Contenido */
+.contenido {
+    text-align: left;
+    font-size: 1.5rem;
+    color: #ffffff;
+    flex: 1;
+    max-width: 900px;
+}
+
+/* Header Container */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #333;
+    transition: all 0.3s ease;
+}
+
+.nombre h2 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    transform: translateX(80%);  /* Mueve el nombre 80% a la derecha */
+}
+
+
+/* ---------------------------------------Barra de navegación--------------------------------------- */
+.barra_nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+    justify-content: flex-end; /* linea para que los elementos esten al lado derecho */
+}
+
+/* Enlaces de la barra de navegación */
+.barra_nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Resaltar sección activa */
+.barra_nav a:hover,
+.barra_nav a:focus {
+    color: #00a6ff;
+}
+
+/* Efecto para sección actual con scroll */
+.barra_nav a.active {
+    color: #00a6ff;
+    font-weight: bold;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 100%;
+}
+
+/* ---------------------------------------Contenedor principal--------------------------------------- */
+.main-content {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 6rem; /* Aumentado para compensar mejor la barra de navegación fija */
+}
+
+/* Foto de Perfil*/
+.foto_perfil img{
+    width: 350px;           /* Tamaño de la foto */
+    height: 350px;          /* Altura igual para que sea cuadrada */
+    border-radius: 50%;     /* Hace la foto redonda */
+    object-fit: cover;      /* Ajusta la imagen sin deformar */
+    transition: transform 0.3s ease;  /* Animación suave */
+}
+
+.foto_perfil img:hover {
+    transform: scale(1.1);  /* Agranda la foto al pasar el mouse */
+}
+
+/* Contenedor de Redes Sociales */
+.redes-sociales {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Iconos Sociales */
+.icono-social {
+    color: #00a6ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icono-social:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Tooltip */
+.icono-social::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.icono-social::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.icono-social:hover::before,
+.icono-social:hover::after {
+    opacity: 1;
+}
+
+/* Iconos */
+.icon {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
+/* ---------------------------------------Educacion--------------------------------------- */
+.educacion {
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.educacion h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.educacion h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    border-radius: 2px;
+}
+
+/* Contenedor de cartas de educación */
+.educacion-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cartas de educación (reutilizar estilos de experiencia) */
+.carta-educacion {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.carta-educacion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.carta-educacion:hover::before {
+    transform: scaleX(1);
+}
+
+.carta-educacion:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+    border-color: #00a6ff;
+}
+
+.carta-educacion .carta-content {
+    max-height: 200px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.carta-educacion:hover .carta-content {
+    max-height: 500px;
+}
+
+/* ---------------------------------------Proyectos--------------------------------------- */
+#proyectos {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.proyectos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.carta-proyecto {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.carta-proyecto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.carta-proyecto:hover::before {
+    transform: scaleX(1);
+}
+
+.carta-proyecto:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+    border-color: #00a6ff;
+    z-index: 100;
+}
+
+.carta-proyecto .carta-content {
+    max-height: 200px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.carta-proyecto:hover .carta-content {
+    max-height: 200px;
+}
+
+.carta-proyecto .carta-header h3 {
+    color: #00a6ff;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.carta-proyecto h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.carta-proyecto p {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.carta-proyecto ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.carta-proyecto li {
+    color: #ccc;
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.carta-proyecto li:hover {
+    color: #00a6ff;
+    transform: translateX(5px);
+}
+
+#proyectos h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+#proyectos h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    border-radius: 2px;
+}
+
+/* ---------------------------------------Experiencia--------------------------------------- */
+#experiencia {
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+
+}
+
+.experiencia-timeline {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border: 1px solid #333;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #00a6ff, #0066cc);
+    opacity: 0.8;
+}
+
+.timeline-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 166, 255, 0.2);
+    border-color: #00a6ff;
+}
+
+.timeline-date {
+    min-width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.year {
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0, 166, 255, 0.3);
+}
+
+.company-logo {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 166, 255, 0.1);
+    border-radius: 50%;
+    border: 2px solid rgba(0, 166, 255, 0.3);
+}
+
+.timeline-content {
+    flex: 1;
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.timeline-content h3 {
+    color: #00a6ff;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.timeline-content h4 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+    background: rgba(0, 166, 255, 0.2);
+    color: #00a6ff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid #00a6ff;
+    transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+    background: #00a6ff;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.achievements {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.achievements li {
+    color: #ccc;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.achievements li:hover {
+    color: #00a6ff;
+    transform: translateX(5px);
+}
+
+#experiencia h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+#experiencia h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    border-radius: 2px;
+}
+
+/* Contenedor de cartas de experiencia */
+.experiencia-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cartas de experiencia */
+.carta-experiencia {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.carta-experiencia::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.carta-experiencia:hover::before {
+    transform: scaleX(1);
+}
+
+.carta-experiencia:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 166, 255, 0.3);
+    border-color: #00a6ff;
+}
+
+.carta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.5rem;
+}
+
+.carta-header h3 {
+    color: #00a6ff;
+    font-size: 1.3rem;
+    margin: 0;
+    text-align: center;
+}
+
+.fecha {
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.carta-content h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.carta-content p {
+    color: #ccc;
+    line-height: 1.6;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+
+.carta-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.carta-content li {
+    color: #aaa;
+    padding: 0.3rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.carta-content li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #00a6ff;
+    font-weight: bold;
+}
+
+/* Efecto de expansión del contenido */
+.carta-experiencia .carta-content {
+    max-height: 200px;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.carta-experiencia:hover .carta-content {
+    max-height: 500px;
+}
+
+/* ---------------------------------------Habilidades--------------------------------------- */
+.habilidades {
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+}
+
+.habilidades h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.habilidades h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    border-radius: 2px;
+}
+
+.habilidades-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.habilidades-intro {
+    background: linear-gradient(135deg, rgba(0, 166, 255, 0.1), rgba(0, 102, 204, 0.05));
+    border: 1px solid rgba(0, 166, 255, 0.3);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.habilidades-intro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 166, 255, 0.2);
+    border-color: rgba(0, 166, 255, 0.5);
+}
+
+.habilidades-intro h3 {
+    color: #00a6ff;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    position: relative;
+}
+
+.habilidades-intro h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    border-radius: 2px;
+}
+
+.habilidades-desc {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 2rem 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.habilidades-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.highlight-tag {
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.highlight-tag:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 166, 255, 0.4);
+    border-color: #00a6ff;
+}
+
+.habilidad-carta {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.habilidad-carta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 166, 255, 0.2);
+    border-color: #00a6ff;
+}
+
+.habilidad-carta h3 {
+    color: #00a6ff;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-bar {
+    background: #333;
+    height: 30px;
+    border-radius: 15px;
+    margin: 1rem 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-fill {
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: width 1s ease;
+}
+
+/* ---------------------------------------Contacto--------------------------------------- */
+.contacto {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.contacto h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.contacto h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    border-radius: 2px;
+}
+
+.contacto-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contacto-info h3 {
+    color: #00a6ff;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.contacto-info p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.contacto-datos {
+    text-align: left;
+}
+
+.contacto-item {
+    color: #aaa;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.contacto-item strong {
+    color: #00a6ff;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+    outline: none;
+    border-color: #00a6ff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.contacto-form input::placeholder,
+.contacto-form textarea::placeholder {
+    color: #888;
+}
+
+.btn-contacto {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(90deg, #00a6ff, #0066cc);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-contacto:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 166, 255, 0.3);
+}
